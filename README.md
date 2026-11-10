@@ -1,6 +1,6 @@
-# dsh-jot · 随手笔记
+# dsh-scribble · 随手笔记
 
-[![version](https://img.shields.io/badge/version-0.2.0-6d5ef2)](https://github.com/amd47802574/dsh-jot/releases)
+[![version](https://img.shields.io/badge/version-0.2.0-6d5ef2)](https://github.com/amd47802574/dsh-scribble/releases)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-0.2.0--rc.2-20c997)](https://github.com/anywhere-labs/deepseek-harness-desktop)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![market](https://img.shields.io/badge/dsh%20%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0-orange)](https://awesome-dsh-plugin.com)
@@ -56,27 +56,27 @@
 
 ### 方式一：dsh 插件市场（推荐）
 
-收录后打开 dsh 的 **设置 → 插件（插件市场）**，搜索 `dsh-jot` 或「随手笔记」一键安装。
+收录后打开 dsh 的 **设置 → 插件（插件市场）**，搜索 `dsh-scribble` 或「随手笔记」一键安装。
 
 ### 方式二：dsh CLI
 
 ```bash
-dsh plugin --profile <你的profile> add dsh-jot
+dsh plugin --profile <你的profile> add dsh-scribble
 ```
 
 ### 方式三：从 GitHub 直接装
 
 ```bash
-dsh plugin --profile <你的profile> add github:amd47802574/dsh-jot
+dsh plugin --profile <你的profile> add github:amd47802574/dsh-scribble
 ```
 
 ### 方式四：手动 / 开发模式（Windows）
 
 ```bash
-git clone https://github.com/amd47802574/dsh-jot.git
-cd dsh-jot
+git clone https://github.com/amd47802574/dsh-scribble.git
+cd dsh-scribble
 # 把本目录链接（或复制）进 dsh profile 的 node_modules，并在 profile
-# package.json 的 dependencies 与 dsh.profile.bundles 中登记 dsh-jot
+# package.json 的 dependencies 与 dsh.profile.bundles 中登记 dsh-scribble
 # 安装/卸载前需彻底退出 dsh，否则文件被占用（EPERM）
 ```
 
@@ -106,7 +106,7 @@ cd dsh-jot
 | 项 | 默认值 | 说明 |
 |---|---|---|
 | 笔记根目录 | `E:/dsh-kb` | 所有笔记与附件的存储位置，可在底部状态栏随时更改（自动迁移） |
-| 配置文件 | `E:/dsh-tools/dsh-jot.json` | 记住根目录设置，独立于插件目录，profile 重置不丢失 |
+| 配置文件 | `E:/dsh-tools/dsh-scribble.json` | 记住根目录设置，独立于插件目录，profile 重置不丢失 |
 | 自定义标签 | `<根目录>/tags.json` | 提前注册的标签登记表，可手工编辑 |
 
 目录结构：
