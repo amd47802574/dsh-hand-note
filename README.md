@@ -1,6 +1,6 @@
 # dsh-hand-note · 随手笔记
 
-[![version](https://img.shields.io/badge/version-0.2.0-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
+[![version](https://img.shields.io/badge/version-0.2.1-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-0.2.0--rc.2-20c997)](https://github.com/anywhere-labs/deepseek-harness-desktop)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![market](https://img.shields.io/badge/dsh%20%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0-orange)](https://awesome-dsh-plugin.com)
@@ -14,7 +14,7 @@
 ## ✨ 它解决什么问题
 
 - **聊天里的知识点留不住？** 每轮对话结束后一键「存入随手笔记」，AI 自动抽取可复用的命令、配置、结论与坑，勾选后写入
-- **笔记散落各处找不回？** 全文搜索 + 标签筛选，毫秒级命中；`Ctrl+Alt+K` 随时把任意一篇笔记以引用块插入对话输入框
+- **笔记散落各处找不回？** 全文搜索 + 标签筛选，毫秒级命中
 - **不想把笔记交给第三方云？** 每篇一个 `.md`，放在你指定的本地文件夹，用 VS Code / Obsidian / 记事本都能直接改，插件自动识别
 - **文档里的内容没法问 AI？** 拖入 Office 文件自动零依赖抽取正文，笔记立即可搜索、可被 AI 引用
 
@@ -48,7 +48,6 @@
 
 ### 与对话打通
 
-- **引用到对话**：`Ctrl+Alt+K` 呼出全量笔记快搜面板，`↑↓` 选择、`Enter` 把笔记以引用块插入聊天输入框
 - **对话回写（writeback）**：带附件/文档的对话轮次末尾出现「存入随手笔记」按钮，AI 抽取候选知识点 → 勾选确认 → 写入；纯文字回答不触发，绝不打扰
 - **侧栏入口**：左侧栏「随手笔记」一键进入全屏笔记面板，「‹ 聊天」随时返回
 
@@ -87,7 +86,7 @@ cd dsh-hand-note
 1. 打开左侧栏「随手笔记」，点右上 **＋ 新建笔记**
 2. 填标题、写正文（Markdown），停笔即自动保存
 3. 想分类？在标签栏点 **＋ 标签** 先建体系，再把标签填进笔记的标签栏（逗号分隔）
-4. 聊天时按 **Ctrl+Alt+K** 引用已有笔记；带文档聊完后点轮次末尾的 **存入随手笔记** 沉淀知识点
+4. 带文档聊完后，点对话轮次末尾的 **存入随手笔记** 沉淀知识点
 5. 想换库位置？点底部状态栏的「库位置 · 点击更改」，旧笔记自动迁移
 
 ## ⌨️ 快捷键
@@ -95,9 +94,7 @@ cd dsh-hand-note
 | 快捷键 | 作用 |
 |---|---|
 | `Ctrl+S` | 手动立即保存 |
-| `Ctrl+Alt+K` | 任意输入框呼出笔记快搜并引用 |
-| `↑` / `↓` / `Enter` | 快搜面板选择 / 确认 |
-| `Esc` | 关闭面板 / 菜单 |
+| `Esc` | 关闭右键菜单 |
 | 右键笔记 | 打开 / 复制 / 剪切 / 重命名 / 删除 |
 | 右键标签 chip 的 × | 删除该标签（全局） |
 
@@ -125,7 +122,7 @@ E:/dsh-kb/
 |---|---|
 | `lib/store.js` | 笔记存储：扫描（mtime 缓存）、增删改查、标签登记表、批量删标签 |
 | `lib/index.js` | 宿主（Node）侧入口：webServer 路由 + 令牌鉴权 + RPC 分发表 |
-| `lib/client.js` | 浏览器半侧 UI：面板、列表、编辑器、Markdown 渲染、引用快搜、自动保存 |
+| `lib/client.js` | 浏览器半侧 UI：面板、列表、编辑器、Markdown 渲染、自动保存 |
 | `lib/attachments.js` | Office 文档零依赖文本抽取（ZIP + XML 手解，无第三方库） |
 | `lib/writeback.js` | 对话回写：定位会话轮次、调用 LLM 抽取候选 |
 | `lib/writeback-prompts.js` | 抽取提示词 |
@@ -157,6 +154,11 @@ A：只从笔记的 front matter 里移除该标签字段，正文与其他标�
 - **Node**：`^22.19.0 || >=24.0.0`
 
 ## 📝 更新日志
+
+### 0.2.1
+
+- 保存按钮移至编辑器右上角（与「编辑 / 预览」同行），取消底部操作栏，编辑区更高
+- 移除「引用到对话」功能（按钮、Ctrl+Alt+K 快搜面板与输入框入口），更专注记录
 
 ### 0.2.0
 
