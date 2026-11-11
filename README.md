@@ -1,6 +1,6 @@
 # dsh-hand-note · 随手笔记
 
-[![version](https://img.shields.io/badge/version-0.3.1-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
+[![version](https://img.shields.io/badge/version-0.3.2-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-0.2.0--rc.2-20c997)](https://github.com/anywhere-labs/deepseek-harness-desktop)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![market](https://img.shields.io/badge/dsh%20%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0-orange)](https://awesome-dsh-plugin.com)
@@ -162,6 +162,11 @@ A：只从笔记的 front matter 里移除该标签字段，正文与其他标�
 - **Node**：`^22.19.0 || >=24.0.0`
 
 ## 📝 更新日志
+
+### 0.3.2
+
+- 修复：插件更新/重载后库目录被重置——桌面壳在正常启动与更新后重载两个场景下对 `DSH_HOME` 的解析不一致，配置文件被读去不同位置。现在配置读取走多路径回退链（`DSH_HOME` 下 → 用户主目录 → 旧版 `E:\dsh-tools` 位置），写入时镜像到全部已知位置，任何环境下启动都能找回你设置的库位置
+- 修复：右键菜单输入框（新建标签/重命名/目录改名）超出白色底板边界——改用 flex stretch 布局，聚焦光圈不再溢出；新建标签占位文案精简为「逗号可批量添加」
 
 ### 0.3.1
 

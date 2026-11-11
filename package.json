@@ -1,6 +1,6 @@
 {
   "name": "dsh-hand-note",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "随手笔记 for DeepSeek Harness (dsh)：每篇一个 Markdown 文件的本地笔记插件。卡片式界面、回收站（删除可恢复，保留 30 天）、自定义标签管理（可提前建标签、一处删除全局生效）、全文搜索、自动保存、Markdown 渲染预览、附件与 Office 零依赖文本抽取、对话一键回写。",
   "license": "MIT",
   "author": "amd47802574",
