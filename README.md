@@ -1,6 +1,6 @@
 # dsh-hand-note · 随手笔记
 
-[![version](https://img.shields.io/badge/version-0.3.2-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
+[![version](https://img.shields.io/badge/version-0.3.3-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-0.2.0--rc.2-20c997)](https://github.com/anywhere-labs/deepseek-harness-desktop)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![market](https://img.shields.io/badge/dsh%20%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0-orange)](https://awesome-dsh-plugin.com)
@@ -162,6 +162,10 @@ A：只从笔记的 front matter 里移除该标签字段，正文与其他标�
 - **Node**：`^22.19.0 || >=24.0.0`
 
 ## 📝 更新日志
+
+### 0.3.3
+
+- 修复：重启 dsh 后首次打开随手笔记，顶部标签栏一直不渲染——`reloadTags` 拿到数据后从未 `emit`，界面不知道要重绘，直到下一次任意交互才「突然出现」。现在标签/目录加载完成即刷新界面，首屏三路并行加载（不再串行等列表），并在启动竞态失败时自动重试一次
 
 ### 0.3.2
 
