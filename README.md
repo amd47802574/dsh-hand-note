@@ -1,6 +1,6 @@
 # dsh-hand-note · 随手笔记
 
-[![version](https://img.shields.io/badge/version-0.4.0-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
+[![version](https://img.shields.io/badge/version-0.4.1-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-0.2.0--rc.2-20c997)](https://github.com/anywhere-labs/deepseek-harness-desktop)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![market](https://img.shields.io/badge/dsh%20%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0-orange)](https://awesome-dsh-plugin.com)
@@ -182,6 +182,11 @@ A：只改 front matter 里的标签名，正文与其他标签原样保留；�
 - **Node**：`^22.19.0 || >=24.0.0`
 
 ## 📝 更新日志
+
+### 0.4.1
+
+- 修复：拖动排序滑过卡片间隙/列表空白时误弹「松手即可导入为笔记」——导入浮层现在只对真正带文件的拖拽（资源管理器/桌面拖入）亮起，笔记排序拖拽完全隔离
+- 优化：置顶图钉重画为标准图钉造型（圆头+锥形针）并放大，未置顶时悬停半透明灰、置顶时常亮主题色、置顶行上图钉悬停变红提示可取消；搜索结果里也能直接点图钉置顶
 
 ### 0.4.0
 
