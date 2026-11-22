@@ -1,6 +1,6 @@
 # dsh-hand-note · 随手笔记
 
-[![version](https://img.shields.io/badge/version-0.4.3-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
+[![version](https://img.shields.io/badge/version-0.4.4-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-0.2.0--rc.2-20c997)](https://github.com/anywhere-labs/deepseek-harness-desktop)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![market](https://img.shields.io/badge/dsh%20%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0-orange)](https://awesome-dsh-plugin.com)
@@ -182,6 +182,12 @@ A：只改 front matter 里的标签名，正文与其他标签原样保留；�
 - **Node**：`^22.19.0 || >=24.0.0`
 
 ## 📝 更新日志
+
+### 0.4.4
+
+- 修复：正文右侧文字被裁剪的真正根因——「行宽 适中」模式给预览区/编辑区/标题输入设了 `width:100%`，但元素按 content-box 计宽，左右 padding 各多出约 20px 溢出编辑卡片被裁（编辑区可用宽度小于约 736px 时必现，每行末尾约 1 个汉字被切掉）。三处统一 `box-sizing:border-box` 彻底闭合
+- 优化：加宽正文右缘留白——预览/编辑区右 padding 20→28px、标题区右 24px，长文阅读更透气
+- 附加 `overflow-wrap:anywhere` 兜底超长单词/标识符换行；面板加 `min-width:0` 防御性收窄，杜绝横向溢出
 
 ### 0.4.3
 
