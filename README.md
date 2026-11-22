@@ -1,6 +1,6 @@
 # dsh-hand-note · 随手笔记
 
-[![version](https://img.shields.io/badge/version-0.4.1-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
+[![version](https://img.shields.io/badge/version-0.4.2-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-0.2.0--rc.2-20c997)](https://github.com/anywhere-labs/deepseek-harness-desktop)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![market](https://img.shields.io/badge/dsh%20%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0-orange)](https://awesome-dsh-plugin.com)
@@ -20,7 +20,7 @@
 
 ## 🎨 界面一览
 
-- **卡片式双栏布局**：左侧速览列表 + 右侧编辑器，胶囊搜索框、标签 chip 条、分段式「编辑 / 预览」切换
+- **卡片式双栏布局**：左侧速览列表 + 右侧编辑器，胶囊搜索框、标签 chip 条、分段式「编辑 / 预览」切换；列表与编辑器之间的分隔条可拖动调宽（双击复位，0.4.2 新增），窄窗口下自动收缩换行不裁剪
 - **平铺速览列表**：无目录层级干扰，所有笔记按更新时间排列，相对时间（「3 小时前」）一目了然，悬停查看完整时间戳；**列表可直接拖拽排序、重要笔记一键置顶（0.4.0 新增）**
 - **舒适阅读排版**：标题、列表符号、引用块色条、圆角代码块、斑马纹表格全部重新调校，明暗主题自适应；状态栏可调字号（小/中/大）与行宽（全宽/适中），长文阅读更舒服
 - **沉浸编辑**：无边框大标题、无干扰正文区、停笔约 1 秒自动落盘，`Ctrl+S` 随时手动保存
@@ -182,6 +182,11 @@ A：只改 front matter 里的标签名，正文与其他标签原样保留；�
 - **Node**：`^22.19.0 || >=24.0.0`
 
 ## 📝 更新日志
+
+### 0.4.2
+
+- 新增：左侧笔记列表宽度可拖拽调节——列表与编辑器之间的分隔条左右拖动（180–560px），双击复位为 300px，宽度本机记忆
+- 修复：窗口收窄到一定程度时正文右侧文字被裁剪——列表栏改为可收缩（最窄 180px），头部按钮行与底部状态栏允许换行折叠，窄窗口下按钮折行、列表压缩、正文完整换行，不再溢出裁剪
 
 ### 0.4.1
 
