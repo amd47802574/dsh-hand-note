@@ -1,6 +1,6 @@
 # dsh-hand-note · 随手笔记
 
-[![version](https://img.shields.io/badge/version-0.4.2-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
+[![version](https://img.shields.io/badge/version-0.4.3-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-0.2.0--rc.2-20c997)](https://github.com/anywhere-labs/deepseek-harness-desktop)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![market](https://img.shields.io/badge/dsh%20%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0-orange)](https://awesome-dsh-plugin.com)
@@ -32,7 +32,7 @@
 ### 笔记管理
 
 - **本地纯文本存储**：每篇一个 `.md`（YAML front matter 存元数据），外部编辑器改动即时可见
-- **全文搜索 + 标签筛选**：标题 / 正文 / 标签联合检索，标签 chip 单击即筛选（单选：再击同一个取消，点另一个直接切换）；筛选某个标签时点「新建笔记」，新笔记自动挂上该标签
+- **全文搜索 + 标签筛选**：标题 / 正文 / 标签联合检索，标签 chip 单击即筛选（单选：再击同一个取消，点另一个直接切换）；点击标签即自动打开该标签列表最上方的笔记（0.4.3 新增）；筛选某个标签时点「新建笔记」，新笔记自动挂上该标签
 - **批量删除**：点右上「批量删除」进入多选模式，卡片勾选、支持全选，一键移入回收站
 - **回收站（0.2.2 新增）**：删除不再直接销毁——笔记与附件原样移入库根目录 `.trash/`，保留 30 天；回收站视图内可单条恢复（回到删除前的目录）或彻底删除，也可一键清空，超期自动清理
 - **自动保存**：停止输入约 1 秒自动落盘；切换笔记、返回聊天、关闭窗口前自动冲刷；保存失败静默重试，`Ctrl+S` 保留为手动立即保存
@@ -182,6 +182,10 @@ A：只改 front matter 里的标签名，正文与其他标签原样保留；�
 - **Node**：`^22.19.0 || >=24.0.0`
 
 ## 📝 更新日志
+
+### 0.4.3
+
+- 新增：点击标签筛选时，自动打开该标签列表最上方的笔记（置顶笔记优先）——不用再点第二次；取消筛选则保持当前笔记不动
 
 ### 0.4.2
 
