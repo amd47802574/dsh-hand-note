@@ -1,6 +1,6 @@
 # dsh-hand-note · 随手笔记
 
-[![version](https://img.shields.io/badge/version-0.4.4-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
+[![version](https://img.shields.io/badge/version-0.5.0-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-0.2.0--rc.2-20c997)](https://github.com/anywhere-labs/deepseek-harness-desktop)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![market](https://img.shields.io/badge/dsh%20%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0-orange)](https://awesome-dsh-plugin.com)
@@ -46,6 +46,13 @@
 - **搜索时自动让位**：搜索/筛选结果按相关度排列，此时禁用拖拽（顺序是临时的），置顶标记照常显示
 - **重命名不丢置顶**：文件名随标题改名（id 变化）时，置顶与排序登记自动迁移到新文件名
 - **Markdown 渲染预览**：标题、粗体/斜体/删除线、行内代码、围栏代码块、链接与裸链、多级嵌套列表、任务列表 `- [ ]`、引用块、表格（含对齐）、分隔线；直接产出 React 元素、不解析 HTML，无注入风险
+
+### 数学公式（0.5.0 新增）
+
+- 四种写法全覆盖：行内 `$...$`、独立成行的 `$$...$$`（可跨行）、`\(...\)`、`\[...\]`，全部交给 **KaTeX** 排成真正的数学版式——分式、根式、上下标、极限、求和/积分号、矩阵、多行对齐都正常，截图里那种 `$\lim_{x\to x_0}\frac{f(x)}{\alpha(x)}=0$` 不再显示成源码
+- 按需加载：正文里真的出现公式才去取 KaTeX（约 280 KB）与配套字体，纯文字笔记零额外开销；加载中先按源码显示，落地后自动替换，内容不丢
+- 不误伤货币与代码：`价格 $5 和 $6` 不会吞成公式；`\$` 转义、行内代码里的 `$`、围栏代码块里的 `$` 一律保持原样
+- 容错可见：公式写错时 KaTeX 以红色小字标出出错位置（`throwOnError:false`），整篇预览不会崩
 
 ### 标签系统（0.2.0 新增）
 
@@ -140,14 +147,15 @@ cd dsh-hand-note
 | 文件 | 职责 |
 |---|---|
 | `lib/store.js` | 笔记存储：扫描（mtime 缓存）、增删改查、标签登记表、批量删标签、标签重命名（全局同步）、回收站（移入/恢复/彻底删除/30 天清理）、手动排序与置顶（layout.json） |
-| `lib/index.js` | 宿主（Node）侧入口：webServer 路由 + 令牌鉴权 + RPC 分发表 |
+| `lib/index.js` | 宿主（Node）侧入口：webServer 路由（RPC + 静态资产）+ 令牌鉴权 + RPC 分发表 |
+| `lib/assets/katex/` | 随插件打包的 KaTeX 运行时（`katex.min.js` + `katex.min.css` + 20 个 woff2 字体），由 `asset/*` 路由直发，不走 npm 依赖解析 |
 | `lib/client.js` | 浏览器半侧 UI：面板、列表、编辑器、Markdown 渲染、自动保存 |
 | `lib/attachments.js` | Office 文档零依赖文本抽取（ZIP + XML 手解，无第三方库） |
 | `lib/writeback.js` | 对话回写：定位会话轮次、调用 LLM 抽取候选 |
 | `lib/writeback-prompts.js` | 抽取提示词 |
 | `lib/config.js` | 根目录配置读写与库迁移 |
 
-安全设计：浏览器→宿主的 RPC 走 per-start 随机令牌（注入鉴权页）+ 同源/环回回退校验，常量时间比较；Markdown 渲染零 `innerHTML`，笔记内容无法向 shell 注入标记。
+安全设计：浏览器→宿主的 RPC 走 per-start 随机令牌（注入鉴权页）+ 同源/环回回退校验，常量时间比较；Markdown 渲染零 `innerHTML`，笔记内容无法向 shell 注入标记。唯一以 `innerHTML` 落地的是 KaTeX 自己生成的公式 DOM（`trust:false`，\href/\includegraphics 之类命令不生效，公式里带不进标记）。静态资产路由 `/_dsh/dsh-hand-note/asset/*` 只读插件自带的 `lib/assets` 目录：`resolve` 后用前缀比对拦路径穿越，目录外一律 404，不暴露任何笔记数据，也不参与令牌鉴权（`<link>`/`<script>`/字体请求无法附带自定义头）。
 
 ## ❓ FAQ
 
@@ -175,6 +183,9 @@ A：不会。顺序与置顶登记在库根目录 `layout.json` 里，与笔记 
 **Q：重命名标签会动我的笔记吗？**
 A：只改 front matter 里的标签名，正文与其他标签原样保留；登记表 `tags.json` 与所有绑定笔记即时同步，状态栏显示同步篇数。新名字与现有标签重名时直接报错，不动任何数据。
 
+**Q：数学公式没渲染出来？**
+A：先确认配对写对（行内两个 `$`、块级两个 `$$` 或 `\[...\]`），且 `$` 内侧紧贴内容（`$ x $` 这种带空格的不算公式，避免误伤货币写法）。KaTeX 运行时是首次出现公式时才从插件自身的 `asset/katex/*` 拉的，若被代理/扩展拦截会一直按源码显示——F12 看那条请求是否 404 或被 block，放行后重开面板（或重启 dsh）即重试。
+
 ## 🧭 兼容性
 
 - **宿主**：DeepSeek Harness `0.2.0-rc.2`（`peerDependencies` 声明）
@@ -182,6 +193,12 @@ A：只改 front matter 里的标签名，正文与其他标签原样保留；�
 - **Node**：`^22.19.0 || >=24.0.0`
 
 ## 📝 更新日志
+
+### 0.5.0
+
+- 新增：Markdown 预览支持 LaTeX 数学公式——行内 `$...$`、独立成行的 `$$...$$`（可跨行）、`\(...\)`、`\[...\]`，由 KaTeX 渲染；分式、上下标、极限、求和号、矩阵等正常排版，写作笔记里的数学推导终于能读了
+- 实现：KaTeX 运行时（`katex.min.js` 275 KB + CSS + 20 个 woff2 字体，共约 580 KB）随插件打包在 `lib/assets/katex/`，宿主侧新增 `asset/*` 静态路由直发，浏览器侧按需注入 `<link>`/`<script>`；正文不含公式时不加载，一分钱不花
+- 细节：`mdHasMath` 预判避免无谓加载；未就绪/渲染失败降级为源码占位，不阻塞预览渲染；`\$` 转义、行内代码与围栏代码块里的 `$` 保持字面；货币写法（`$5`、`$6`）不误判为公式；公式落地后自动重排，无需刷新
 
 ### 0.4.4
 
