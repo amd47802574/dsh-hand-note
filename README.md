@@ -1,6 +1,6 @@
 # dsh-hand-note · 随手笔记
 
-[![version](https://img.shields.io/badge/version-0.5.0-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
+[![version](https://img.shields.io/badge/version-0.5.1-6d5ef2)](https://github.com/amd47802574/dsh-hand-note/releases)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-0.2.0--rc.2-20c997)](https://github.com/anywhere-labs/deepseek-harness-desktop)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![market](https://img.shields.io/badge/dsh%20%E6%8F%92%E4%BB%B6%E5%B8%82%E5%9C%BA-%E9%9A%8F%E6%89%8B%E7%AC%94%E8%AE%B0-orange)](https://awesome-dsh-plugin.com)
@@ -193,6 +193,11 @@ A：先确认配对写对（行内两个 `$`、块级两个 `$$` 或 `\[...\]`�
 - **Node**：`^22.19.0 || >=24.0.0`
 
 ## 📝 更新日志
+
+### 0.5.1
+
+- 移除：`package.json` 里未使用的 `katex` 运行时依赖。KaTeX 运行时本就随插件打包在 `lib/assets/katex/`，经宿主 `asset/*` 路由直发，代码里没有任何 `import`/`require` 指向那个 npm 包
+- 效果：安装/更新只需拉一个 git 包，不再顺带向 registry 解析 katex；公式渲染行为与 0.5.0 完全一致，纯文字笔记路径一字节未动
 
 ### 0.5.0
 
